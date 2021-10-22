@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CommonConstants {
 
-    public static  String[] TEMPLATE_SEARCH_KEYWORD = {"template", "templat"} ;
+    public static  String[] TEMPLATE_SEARCH_KEYWORD = {"template", "templat","tample"} ;
     public static String[]  COLUMN_SEARCH_KEYWORD ={"column","colum","columnn"};
 
 
