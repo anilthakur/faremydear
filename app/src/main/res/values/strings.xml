@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Voice Recognition</string>
+    <string name="create_template">Create template</string>
+    <string name="start">Start</string>
+    <string name="import_msg">Import</string>
+    <string name="powered_by_msg">Powered by xyz</string>
+    <string name="copy_write_msg">Copyright @xyz 2021</string>
+    <string name="todo">TODO</string>
+    <string name="create_free_item">Create Free Item</string>
+</resources>
