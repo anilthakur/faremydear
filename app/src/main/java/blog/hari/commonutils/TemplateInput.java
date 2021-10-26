@@ -28,29 +28,33 @@ public class TemplateInput {
 
     public static String getTemplateVoiceData(String input) {
         String finalData = "";
-
-        try {
-            if (containsWords(input, TEMPLATE_SEARCH_KEYWORD) != null && containsWords(input, COLUMN_SEARCH_KEYWORD) != null) {
+        if (containsWords(input, TEMPLATE_SEARCH_KEYWORD) != null && containsWords(input, COLUMN_SEARCH_KEYWORD) != null) {
+            try {
                 fileName = findTextBetween(input, containsWords(input, TEMPLATE_SEARCH_KEYWORD), containsWords(input, COLUMN_SEARCH_KEYWORD));
                 DataProcessor.saveString(fileName + ".xls", FILE_NAME);
                 finalData = fileName + " |";
+            } catch (Exception e) {
+                finalData = finalData + " |";
             }
-            if (containsWords(input, COLUMN_SEARCH_KEYWORD) != null) {
+        }
+        if (containsWords(input, COLUMN_SEARCH_KEYWORD) != null) {
+            try {
                 String column = input.substring(input.indexOf(containsWords(input, COLUMN_SEARCH_KEYWORD)) + containsWords(input, COLUMN_SEARCH_KEYWORD).length()).replaceAll(",", "|");
                 geVendorColumnName(column.toLowerCase());
                 finalData = finalData + column.toLowerCase();
+            } catch (Exception e) {
+                finalData = finalData + " |";
             }
-
-        } catch (Exception e) {
-            finalData = finalData + " |";
         }
-
         return finalData;
-
     }
 
     public static String excelFileName(String input) {
-        return input;
+        if (!input.isEmpty() && input != null) {
+            return input;
+        } else {
+            return "Default.xls";
+        }
     }
 
     public static List<String> listOfHeaderItem(String input) {
@@ -76,7 +80,13 @@ public class TemplateInput {
     }
 
     public static String[] getItem(String string) {
-        return string.trim().toUpperCase(Locale.ROOT).split("\\|");
+        String[] split = string.trim().toUpperCase().split("\\|");
+        if (split.length > 0) {
+            return split;
+        } else {
+            return new String[]{"Default.xls", ""};
+        }
+
     }
 
     public static boolean isValidTemplate(String input) {
